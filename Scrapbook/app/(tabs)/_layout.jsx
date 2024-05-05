@@ -3,12 +3,17 @@ import React from 'react'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-const AuthLayout = () => {
+const TabsLayout = () => {
   return (
     <>
     <Stack>
         <Stack.Screen
-        name="sign-in"
+        name="home"
+        options={{
+            headerShown:false, title: "Back"
+        }} />
+        <Stack.Screen
+        name="add"
         options={{
             headerShown:false, title: "Back"
         }} />
@@ -18,4 +23,4 @@ const AuthLayout = () => {
   )
 }
 
-export default AuthLayout
+export default TabsLayout
