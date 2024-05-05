@@ -86,6 +86,11 @@ const Add = () => {
                         
                         </TouchableOpacity>
 
+<Text>
+    {"\n"}
+    {"\n"}
+    {"\n"}{"\n"}{"\n"}{"\n"}
+</Text>
                         
                         <View className="justify-center items-center">
             <View className="h-[450] w-[300] bg-black items-center pt-6">

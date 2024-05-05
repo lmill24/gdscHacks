@@ -20,13 +20,13 @@ const SignIn = () => {
         <ScrollView>
             <View className="flex-1 items-center justify-center">
                 
-                <Text className="text-3xl text-red-500 font-bold">Welcome</Text>
+                <Text className="text-4xl text-red-500 font-bold">Welcome</Text>
             
            
             </View>
             
             <View className="flex-1 items-left ml-10 justify-center p-2">
-            <Text className=" text-base text-2xl text-black font-bold">Email
+            <Text className=" text-base text-2xl text-black font-bold">Name
            </Text></View>
            <View className="flex-1 items-center justify-center">
             <View className="w-[300] h-[60] bg-gray-200 p-2">
@@ -55,8 +55,8 @@ const SignIn = () => {
             <View className="flex-1 items-center justify-center p-10">
              <TouchableOpacity
          onPress={() => router.push("../../(tabs)/home")}>
-            <View className="w-[250] h-[70] bg-green-200 items-center justify-center">
-                <Text className="font-bold text-xl">Continue to Home</Text>
+            <View className="w-[250] h-[70] bg-green-900 rounded-xl items-center justify-center">
+                <Text className="font-bold text-xl text-white">Continue to Home</Text>
             </View>
   </TouchableOpacity>
   
