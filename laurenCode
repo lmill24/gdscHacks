@@ -1,0 +1,241 @@
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet, Linking, Button, Image, TouchableHighlight, TextInput, ScrollView, Dimensions, Alert } from 'react-native';
+import Constants from 'expo-constants';
+
+let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get('window').width;
+
+export default class App extends Component {
+    state = {
+        date: 'YYYY/DD/MM',
+        welcomeDisplay: 'block',
+        firstDisplay: 'none',
+        addDisplay: 'none',
+        feedDisplay: 'none',
+        
+    };
+    
+    
+    loginPress = () => (
+        this.setState({
+            welcomeDisplay: 'none',
+            firstDisplay: 'block',
+            addDisplay: 'none',
+            feedDisplay: 'none',
+        })
+    ); 
+    
+    plusPress = () => (
+        this.setState({
+            welcomeDisplay: 'none',
+            firstDisplay: 'none',
+            addDisplay: 'block',
+            feedDisplay: 'none',
+        })
+    );   
+    
+    submitPress = () => (
+        this.setState({
+            welcomeDisplay: 'none',
+            firstDisplay: 'none',
+            addDisplay: 'none',
+            feedDisplay: 'block',
+        })
+    );
+        
+    _handleTextChange = inputValue => {
+        this.setState({ inputValue });
+    };
+    render() {
+        return (
+            <View style={styles.container}>
+                
+            
+                {/*creates a page that displays the welcome screen*/}
+                <View style={{display: this.state.welcomeDisplay}}>
+                    <View style={styles.topContainer}>
+                        <Text style={styles.welcomeText}>
+                            Scrapbook'd
+                        </Text>
+                        
+                        <TouchableHighlight style = {styles.navbarButton}
+                            onPress={this.loginPress}
+                        >
+                        
+                            <Image
+                                source={{ uri: 'https://onymos.com/wp-content/uploads/2020/10/google-signin-button-1024x260.png' }}
+                                style={{ height: deviceWidth/11, width: deviceWidth/2, marginBottom: deviceHeight/20, }}
+                            ></Image>
+                            
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                
+                {/*creates a page that shows users what to do their first time using the app*/}
+                <View style={{display: this.state.firstDisplay}}>
+                    <View style={styles.topContainer}>
+                        <Text style={styles.welcomeText}>
+                            Click the plus sign to start
+                        </Text>
+                        
+                       
+                    </View>
+                </View>
+                
+                {/*creates a page that allows the user to add their scrapbook info*/}
+                <View style={{display: this.state.addDisplay}}>
+                    <View style={styles.topContainer}>
+                        <View style={styles.infoButton}>
+                            <Text style={styles.infoText}>
+                                Add a title for your event here
+                            </Text>
+                        </View>
+                        
+                        <View style={styles.infoButton}>
+                            <TextInput style={styles.dateArea}
+                                    onChangeText={(date) => this.setState({date})}
+                                    value={this.state.date}
+                            />
+                        </View>
+                        
+                        <View style={styles.infoButton}>
+                            <Text style={styles.infoText}>
+                                Click to add a picture
+                            </Text>
+                        </View>
+                        <TouchableHighlight style = {styles.submitButton}
+                            onPress={this.submitPress}
+                        >
+                            <Text style={styles.infoText}>
+                                Submit
+                            </Text>
+                            
+                            
+                        </TouchableHighlight>
+                    
+                    </View>
+                </View>
+                
+                {/*creates a page that allows the user to view their past scrapbook information*/}
+                <View style={{display: this.state.feedDisplay}}>
+                    <View style={styles.topContainer}>
+                        <View style={styles.picContainer}>
+                            <Image
+                                source={{uri: 'https://pyxis.nymag.com/v1/imgs/986/0a9/fb8617a064d7dee0e01b7335d9769a49ac-23-friends-cover-story-lede-mobile.rvertical.w570.jpg'}}
+                                style={{ height: (deviceHeight/5)*2, width: 3*(deviceWidth/5), marginHorizontal: deviceWidth/11, marginBottom: deviceHeight/20}}
+                            ></Image>
+                            
+                        
+                        </View>
+                    
+                    
+                    </View>
+                </View>
+                
+                {/*is for the navbar which always shows*/}
+                <View style={styles.navbarContainer}>
+                    <TouchableHighlight style = {styles.navbarButton}
+                            onPress={this.plusPress}
+                        >
+                        
+                            <Image
+                                source={{ uri: 'https://static.vecteezy.com/system/resources/previews/009/266/327/original/plus-sign-icon-free-png.png' }}
+                                style={{ height: deviceWidth/11, width: deviceWidth/11, marginBottom: deviceHeight/70, }}
+                            ></Image>
+                            
+                        </TouchableHighlight>
+                
+                </View>
+                
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    barArea: {
+       height: 40,
+       width: 2*(deviceWidth/3),
+       borderRadius: 10,
+       margin: 10,
+    },
+    
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: '#ecf0f1',
+    },
+    
+    infoButton: {
+        width: 2*(deviceWidth/3),
+        height: deviceHeight/8,
+        backgroundColor: '#73A9AD',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10
+    },
+    
+    infoText: {
+        margin: 24,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#FFFFFF',
+    },
+    
+    topContainer: {
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: deviceWidth,
+        height: (deviceHeight/10)*9,
+        backgroundColor: '#F5F0BB',
+    },
+    picContainer: {
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: (deviceWidth/4)*3,
+        height: (deviceHeight/10)*6,
+        backgroundColor: '#FFFFFF',
+    },
+    
+    navbarButton: {
+        width: deviceWidth/3,
+        height: deviceHeight/10,
+        backgroundColor: '#DBDFAA',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    navbarContainer: {
+        flexDirection: 'row',
+        height: deviceHeight/10,
+        width: deviceWidth,
+        backgroundColor: '#DBDFAA',
+        borderColor: '#B3C890',
+        borderTopWidth: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    
+    submitButton: {
+        width: deviceWidth/3,
+        height: deviceHeight/15,
+        backgroundColor: 'firebrick',
+        borderWidth: 2,
+        borderColor: 'lightcoral',
+        borderRadius: deviceHeight/25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: deviceWidth/13,
+    },
+    welcomeText: {
+        margin: 24,
+        fontSize: 40,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#73A9AD',
+    },
+});
